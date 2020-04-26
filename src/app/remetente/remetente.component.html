@@ -1,0 +1,58 @@
+<h2>Remetente</h2>
+
+<form #form="ngForm" class="cadastro-form" [formGroup]="pessoaForm" (ngSubmit)="onSubmit()">
+  <input type="hidden" formControlName="id" />
+  <input type="hidden" formControlName="tipo" />
+
+  <mat-form-field>
+    <input matInput placeholder="Nome" formControlName="nome" [errorStateMatcher]="matcher">
+    <mat-error *ngIf="email.hasError('required')">
+      Nome é <strong>obrigatório</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Telefone" mask="(00) 00000-0000" formControlName="telefone">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email">
+    <mat-error *ngIf="email.hasError('required')">
+      Nome é <strong>obrigatório</strong>
+    </mat-error>
+    <mat-error *ngIf="email.hasError('email')">
+      Email é <strong>inválido</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="CPF" mask="000.000.000-00" formControlName="cpf">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Endereço" formControlName="endereco">
+  </mat-form-field>
+
+  <div class="button-row"> 
+    <button mat-raised-button type="submit" color="primary">Salvar</button>
+    <button mat-raised-button color="warn" type="button" *ngIf="pessoaForm.get('id').value" (click)="excluir()">Excluir</button>
+    <button mat-raised-button type="button" *ngIf="pessoaForm.get('id').value" (click)="cleanForm()">Limpar</button>
+  </div>
+  
+  <div class="table-view" *ngIf="dataSource?.length">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let element" > {{element.nome}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let element; columns: displayedColumns;" (click)="select(element)" [ngClass]="{ 'selected': pessoaForm.get('id').value == element.id }"></tr>
+    </table>
+  </div>
+</form>

@@ -1,0 +1,15 @@
+<h2>Importação de Destinatários</h2>
+
+<div class="file-form">
+  <mat-file-upload
+    [labelText]="'Selecione um arquivo .csv para upload:'"
+    [selectButtonText]="'Escolha o arquivo'"
+    [uploadButtonText]="'Submit'"
+    [allowMultipleFiles]="false"
+    [showUploadButton]="true"
+    [acceptedTypes]="'.csv'"
+    (uploadClicked)="onUploadClicked($event)"
+    (selectedFilesChanged)="onSelectedFilesChanged($event)"
+  >
+  </mat-file-upload>
+</div>

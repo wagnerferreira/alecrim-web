@@ -1,0 +1,29 @@
+<h2>Enviar Mensagem</h2>
+
+<form #form="ngForm" class="mensagem-form" [formGroup]="mensagemForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <mat-label>Remetente</mat-label>
+        <mat-select formControlName="remetente">
+            <mat-option *ngFor="let remetente of remetentesList" [value]="remetente">
+                {{remetente.nome}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Destinatário</mat-label>
+        <mat-select formControlName="destinatario">
+            <mat-option *ngFor="let destinatario of destinatariosList" [value]="destinatario">
+                {{destinatario.nome}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <textarea matInput placeholder="Mensagem" formControlName="mensagem"></textarea>
+    </mat-form-field>
+
+    <div class="button-row">
+        <button mat-raised-button type="submit" color="primary">Enviar</button>
+    </div>
+</form>
