@@ -1,4 +1,6 @@
-# SCC4-WEB
+# Alecrim-web
+
+Aplicação criada apartir de um desafio para um processo de seleção em Angular.
 
 Para iniciar a aplicação é necessário rodar:
 
